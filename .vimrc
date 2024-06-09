@@ -16,17 +16,40 @@ filetype plugin on
 " Turn syntax highlighting on.
 syntax on
 
+" Turn on line numbers
+set number
 " Indent automatically
 " Makes sure spaces are used for indenting lines
 " Insert 4 spaces for a line indent
 " Use 4 spaces for >> and << indent
-set autoindent expandtab tabstop=4 shiftwidth=4
+" set autoindent expandtab 
+set expandtab
+set tabstop=4 shiftwidth=4
 
 " Highlight line under cursor horizontally.
 set cursorline
 
 " Do not wrap lines.
-set nowrap
+" set nowrap
 
 " Show the mode you are on in the last line.
 set showmode
+
+" vim-plug
+call plug#begin()
+
+" List your plugins here
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Raimondi/delimitMate'
+
+call plug#end()
+
+if has('gui_running')
+    " GUI-specific settings here
+    set guioptions-=T  " Hide toolbar
+    if v:version < 802
+        packadd! dracula
+    endif
+    syntax enable
+    colorscheme dracula
+endif
